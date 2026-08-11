@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-
-const VALID_STATUSES = ["OPEN", "IN_PROGRESS", "RESOLVED"] as const;
-type Status = (typeof VALID_STATUSES)[number];
-
-function isValidStatus(value: unknown): value is Status {
-  return typeof value === "string" && (VALID_STATUSES as readonly string[]).includes(value);
-}
+import { VALID_STATUSES, isValidStatus } from "@/lib/validation";
 
 // PATCH /api/tickets/:id - update status
 export async function PATCH(
