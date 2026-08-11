@@ -2,6 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { NewTicketForm } from "@/components/NewTicketForm";
 import { TicketRow } from "@/components/TicketRow";
 
+export const dynamic = "force-dynamic";
+
 export default async function TicketsPage() {
   const tickets = await prisma.ticket.findMany({
     orderBy: { createdAt: "desc" },
