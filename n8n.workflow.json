@@ -1,0 +1,92 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "48333711-bf17-43ed-957e-a89ae5b8d48a",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "41c60c96-1cac-4bc9-b722-9d8d84c1682a",
+      "name": "Webhook",
+      "webhookId": "48333711-bf17-43ed-957e-a89ae5b8d48a"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n    \"title\": \"n8n\",\n    \"detail\": \"practice\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        112,
+        0
+      ],
+      "id": "e488e3f7-d39e-4cf9-b72b-722aa0ff1b87",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://willow-demo.vercel.app/api/tickets",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"{{$json.title}}\",\n  \"detail\": \"{{$json.detail}}\",\n  \"source\": \"N8N\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        336,
+        0
+      ],
+      "id": "34f49bf7-a8cc-4c48-9649-df830dcf3073",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "c190c603-7d5c-46fb-a860-d4245ce1570d",
+  "meta": {
+    "instanceId": "0ca367e64ccdbf28d38cbea232a9b5192839204abdda8653144d003f8451a5c8"
+  },
+  "nodeGroups": [],
+  "id": "R8IJe8F4wC5gUNMZ",
+  "tags": []
+}

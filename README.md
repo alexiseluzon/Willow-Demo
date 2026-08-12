@@ -48,6 +48,8 @@ Note
 
 A webhook-triggered workflow maps an incoming payload to the ticket shape and POSTs it to `/api/tickets` with `source: "N8N"`. Tickets created this way are visibly tagged in the UI, distinguishing automation-originated tickets from manually created ones — this is the piece meant to mirror a real "external system feeds our internal tool" integration.
 
+The exported workflow (`n8n-workflow.json`) is included in this repo and can be re-imported into any n8n instance via **Import from File**.
+
 ## Local setup
 
 ```bash
