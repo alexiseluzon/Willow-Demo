@@ -15,19 +15,25 @@ export async function triageTicket(input: {
   const title = input.title.slice(0, 200);
   const detail = (input.detail ?? "(none)").slice(0, 4000);
 
-  const res = await getAI().models.generateContent({
+  const res = await getAI().chat.completions.create({
     model: MODEL,
-    contents: `<ticket>\nTitle: ${title}\nDetail: ${detail}\n</ticket>`,
-    config: {
-      systemInstruction: SYSTEM,
-      responseMimeType: "application/json",
-      responseJsonSchema: TriageJsonSchema,
-      temperature: 0.2,
+    temperature: 0.2,
+    messages: [
+      { role: "system", content: SYSTEM },
+      {
+        role: "user",
+        content: `<ticket>\nTitle: ${title}\nDetail: ${detail}\n</ticket>`,
+      },
+    ],
+    response_format: {
+      type: "json_schema",
+      json_schema: { name: "triage", schema: TriageJsonSchema },
     },
   });
 
-  if (!res.text) throw new Error("Empty AI response");
-  return TriageSchema.parse(JSON.parse(res.text));
+  const text = res.choices[0]?.message?.content;
+  if (!text) throw new Error("Empty AI response");
+  return TriageSchema.parse(JSON.parse(text));
 }
 
 // Never throws: on any failure the ticket is marked FAILED for manual triage.

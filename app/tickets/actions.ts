@@ -1,5 +1,7 @@
 "use server";
 
+import { after } from "next/server";
+import { runTriage } from "@/lib/ai/triage";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -11,9 +13,10 @@ export async function createTicket(formData: FormData) {
     throw new Error("Title is required.");
   }
 
-  await prisma.ticket.create({
+  const ticket = await prisma.ticket.create({
     data: { title, detail: detail || null },
   });
+  after(() => runTriage(ticket.id));
 
   revalidatePath("/tickets");
 }
