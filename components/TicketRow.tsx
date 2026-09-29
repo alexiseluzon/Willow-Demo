@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { updateTicketStatus, deleteTicket } from "@/app/tickets/actions";
+import Link from "next/link";
 
 type Ticket = {
   id: string;
@@ -39,7 +40,11 @@ export function TicketRow({ ticket }: { ticket: Ticket }) {
     <div className="flex items-start justify-between gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <h3 className="truncate font-medium text-gray-900">{ticket.title}</h3>
+          <h3 className="truncate font-medium text-gray-900">
+            <Link href={`/tickets/${ticket.id}`} title="Open ticket" className="hover:underline">
+              {ticket.title}
+            </Link>
+          </h3>
           {ticket.source === "N8N" && (
             <span
               title="Created via n8n automation"
