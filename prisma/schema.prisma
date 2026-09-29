@@ -28,7 +28,7 @@ model Ticket {
   priority     TicketPriority?
   summary      String?
   triageStatus TriageStatus     @default(PENDING)
-  embedding    Unsupported("vector(768)")?
+  embedding    Unsupported("vector(384)")?
   notes     Note[]
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt

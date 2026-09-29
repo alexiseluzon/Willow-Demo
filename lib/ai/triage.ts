@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { getAI, MODEL } from "./client";
 import { TriageSchema, TriageJsonSchema, type Triage } from "./schemas";
+import { embedTicket } from "./embeddings";
 
 const SYSTEM = `You triage customer support tickets.
 Return category, priority and a one-sentence summary (max 280 chars).
@@ -53,4 +54,5 @@ export async function runTriage(ticketId: string): Promise<void> {
       .update({ where: { id: ticketId }, data: { triageStatus: "FAILED" } })
       .catch(() => {});
   }
+  await embedTicket(ticketId);
 }
