@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { getAI, MODEL } from "./client";
 import { TriageSchema, TriageJsonSchema, type Triage } from "./schemas";
 import { embedTicket } from "./embeddings";
+import { notifyHighPriority } from "@/lib/notify";
 
 const SYSTEM = `You triage customer support tickets.
 Return category, priority and a one-sentence summary (max 280 chars).
@@ -44,10 +45,11 @@ export async function runTriage(ticketId: string): Promise<void> {
 
   try {
     const result = await triageTicket(ticket);
-    await prisma.ticket.update({
+    const updated = await prisma.ticket.update({
       where: { id: ticketId },
       data: { ...result, triageStatus: "DONE" },
     });
+    await notifyHighPriority(updated);
   } catch (err) {
     console.error("[triage] failed", ticketId, err);
     await prisma.ticket
