@@ -19,16 +19,22 @@ enum TicketSource {
 }
 
 model Ticket {
-  id        String       @id @default(cuid())
-  title     String
-  detail    String?
-  status    TicketStatus @default(OPEN)
-  source    TicketSource @default(MANUAL)
-  notes     Note[]
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  id           String                      @id @default(cuid())
+  title        String
+  detail       String?
+  status       TicketStatus                @default(OPEN)
+  source       TicketSource                @default(MANUAL)
+  category     TicketCategory?
+  priority     TicketPriority?
+  summary      String?
+  triageStatus TriageStatus                @default(PENDING)
+  embedding    Unsupported("vector(768)")?
+  notes        Note[]
+  createdAt    DateTime                    @default(now())
+  updatedAt    DateTime                    @updatedAt
 
   @@index([status])
+  @@index([priority])
 }
 
 model Note {
@@ -39,4 +45,25 @@ model Note {
   createdAt DateTime @default(now())
 
   @@index([ticketId])
+}
+
+enum TicketCategory {
+  BUG
+  BILLING
+  FEATURE_REQUEST
+  ACCOUNT
+  OTHER
+}
+
+enum TicketPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TriageStatus {
+  PENDING
+  DONE
+  FAILED
 }

@@ -44,6 +44,36 @@ export const TicketSource: {
 
 export type TicketSource = (typeof TicketSource)[keyof typeof TicketSource]
 
+
+export const TicketCategory: {
+  BUG: 'BUG',
+  BILLING: 'BILLING',
+  FEATURE_REQUEST: 'FEATURE_REQUEST',
+  ACCOUNT: 'ACCOUNT',
+  OTHER: 'OTHER'
+};
+
+export type TicketCategory = (typeof TicketCategory)[keyof typeof TicketCategory]
+
+
+export const TicketPriority: {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+};
+
+export type TicketPriority = (typeof TicketPriority)[keyof typeof TicketPriority]
+
+
+export const TriageStatus: {
+  PENDING: 'PENDING',
+  DONE: 'DONE',
+  FAILED: 'FAILED'
+};
+
+export type TriageStatus = (typeof TriageStatus)[keyof typeof TriageStatus]
+
 }
 
 export type TicketStatus = $Enums.TicketStatus
@@ -53,6 +83,18 @@ export const TicketStatus: typeof $Enums.TicketStatus
 export type TicketSource = $Enums.TicketSource
 
 export const TicketSource: typeof $Enums.TicketSource
+
+export type TicketCategory = $Enums.TicketCategory
+
+export const TicketCategory: typeof $Enums.TicketCategory
+
+export type TicketPriority = $Enums.TicketPriority
+
+export const TicketPriority: typeof $Enums.TicketPriority
+
+export type TriageStatus = $Enums.TriageStatus
+
+export const TriageStatus: typeof $Enums.TriageStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -1061,6 +1103,10 @@ export namespace Prisma {
     detail: string | null
     status: $Enums.TicketStatus | null
     source: $Enums.TicketSource | null
+    category: $Enums.TicketCategory | null
+    priority: $Enums.TicketPriority | null
+    summary: string | null
+    triageStatus: $Enums.TriageStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1071,6 +1117,10 @@ export namespace Prisma {
     detail: string | null
     status: $Enums.TicketStatus | null
     source: $Enums.TicketSource | null
+    category: $Enums.TicketCategory | null
+    priority: $Enums.TicketPriority | null
+    summary: string | null
+    triageStatus: $Enums.TriageStatus | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1081,6 +1131,10 @@ export namespace Prisma {
     detail: number
     status: number
     source: number
+    category: number
+    priority: number
+    summary: number
+    triageStatus: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1093,6 +1147,10 @@ export namespace Prisma {
     detail?: true
     status?: true
     source?: true
+    category?: true
+    priority?: true
+    summary?: true
+    triageStatus?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1103,6 +1161,10 @@ export namespace Prisma {
     detail?: true
     status?: true
     source?: true
+    category?: true
+    priority?: true
+    summary?: true
+    triageStatus?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1113,6 +1175,10 @@ export namespace Prisma {
     detail?: true
     status?: true
     source?: true
+    category?: true
+    priority?: true
+    summary?: true
+    triageStatus?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1196,6 +1262,10 @@ export namespace Prisma {
     detail: string | null
     status: $Enums.TicketStatus
     source: $Enums.TicketSource
+    category: $Enums.TicketCategory | null
+    priority: $Enums.TicketPriority | null
+    summary: string | null
+    triageStatus: $Enums.TriageStatus
     createdAt: Date
     updatedAt: Date
     _count: TicketCountAggregateOutputType | null
@@ -1223,6 +1293,10 @@ export namespace Prisma {
     detail?: boolean
     status?: boolean
     source?: boolean
+    category?: boolean
+    priority?: boolean
+    summary?: boolean
+    triageStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     notes?: boolean | Ticket$notesArgs<ExtArgs>
@@ -1235,6 +1309,10 @@ export namespace Prisma {
     detail?: boolean
     status?: boolean
     source?: boolean
+    category?: boolean
+    priority?: boolean
+    summary?: boolean
+    triageStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["ticket"]>
@@ -1245,6 +1323,10 @@ export namespace Prisma {
     detail?: boolean
     status?: boolean
     source?: boolean
+    category?: boolean
+    priority?: boolean
+    summary?: boolean
+    triageStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["ticket"]>
@@ -1255,11 +1337,15 @@ export namespace Prisma {
     detail?: boolean
     status?: boolean
     source?: boolean
+    category?: boolean
+    priority?: boolean
+    summary?: boolean
+    triageStatus?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "detail" | "status" | "source" | "createdAt" | "updatedAt", ExtArgs["result"]["ticket"]>
+  export type TicketOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "detail" | "status" | "source" | "category" | "priority" | "summary" | "triageStatus" | "createdAt" | "updatedAt", ExtArgs["result"]["ticket"]>
   export type TicketInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     notes?: boolean | Ticket$notesArgs<ExtArgs>
     _count?: boolean | TicketCountOutputTypeDefaultArgs<ExtArgs>
@@ -1278,6 +1364,10 @@ export namespace Prisma {
       detail: string | null
       status: $Enums.TicketStatus
       source: $Enums.TicketSource
+      category: $Enums.TicketCategory | null
+      priority: $Enums.TicketPriority | null
+      summary: string | null
+      triageStatus: $Enums.TriageStatus
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["ticket"]>
@@ -1709,6 +1799,10 @@ export namespace Prisma {
     readonly detail: FieldRef<"Ticket", 'String'>
     readonly status: FieldRef<"Ticket", 'TicketStatus'>
     readonly source: FieldRef<"Ticket", 'TicketSource'>
+    readonly category: FieldRef<"Ticket", 'TicketCategory'>
+    readonly priority: FieldRef<"Ticket", 'TicketPriority'>
+    readonly summary: FieldRef<"Ticket", 'String'>
+    readonly triageStatus: FieldRef<"Ticket", 'TriageStatus'>
     readonly createdAt: FieldRef<"Ticket", 'DateTime'>
     readonly updatedAt: FieldRef<"Ticket", 'DateTime'>
   }
@@ -3216,6 +3310,10 @@ export namespace Prisma {
     detail: 'detail',
     status: 'status',
     source: 'source',
+    category: 'category',
+    priority: 'priority',
+    summary: 'summary',
+    triageStatus: 'triageStatus',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -3305,6 +3403,48 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'TicketCategory'
+   */
+  export type EnumTicketCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketCategory'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketCategory[]'
+   */
+  export type ListEnumTicketCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketCategory[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketPriority'
+   */
+  export type EnumTicketPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriority'>
+    
+
+
+  /**
+   * Reference to a field of type 'TicketPriority[]'
+   */
+  export type ListEnumTicketPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TicketPriority[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TriageStatus'
+   */
+  export type EnumTriageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TriageStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'TriageStatus[]'
+   */
+  export type ListEnumTriageStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TriageStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3344,6 +3484,10 @@ export namespace Prisma {
     detail?: StringNullableFilter<"Ticket"> | string | null
     status?: EnumTicketStatusFilter<"Ticket"> | $Enums.TicketStatus
     source?: EnumTicketSourceFilter<"Ticket"> | $Enums.TicketSource
+    category?: EnumTicketCategoryNullableFilter<"Ticket"> | $Enums.TicketCategory | null
+    priority?: EnumTicketPriorityNullableFilter<"Ticket"> | $Enums.TicketPriority | null
+    summary?: StringNullableFilter<"Ticket"> | string | null
+    triageStatus?: EnumTriageStatusFilter<"Ticket"> | $Enums.TriageStatus
     createdAt?: DateTimeFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeFilter<"Ticket"> | Date | string
     notes?: NoteListRelationFilter
@@ -3355,6 +3499,10 @@ export namespace Prisma {
     detail?: SortOrderInput | SortOrder
     status?: SortOrder
     source?: SortOrder
+    category?: SortOrderInput | SortOrder
+    priority?: SortOrderInput | SortOrder
+    summary?: SortOrderInput | SortOrder
+    triageStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     notes?: NoteOrderByRelationAggregateInput
@@ -3369,6 +3517,10 @@ export namespace Prisma {
     detail?: StringNullableFilter<"Ticket"> | string | null
     status?: EnumTicketStatusFilter<"Ticket"> | $Enums.TicketStatus
     source?: EnumTicketSourceFilter<"Ticket"> | $Enums.TicketSource
+    category?: EnumTicketCategoryNullableFilter<"Ticket"> | $Enums.TicketCategory | null
+    priority?: EnumTicketPriorityNullableFilter<"Ticket"> | $Enums.TicketPriority | null
+    summary?: StringNullableFilter<"Ticket"> | string | null
+    triageStatus?: EnumTriageStatusFilter<"Ticket"> | $Enums.TriageStatus
     createdAt?: DateTimeFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeFilter<"Ticket"> | Date | string
     notes?: NoteListRelationFilter
@@ -3380,6 +3532,10 @@ export namespace Prisma {
     detail?: SortOrderInput | SortOrder
     status?: SortOrder
     source?: SortOrder
+    category?: SortOrderInput | SortOrder
+    priority?: SortOrderInput | SortOrder
+    summary?: SortOrderInput | SortOrder
+    triageStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TicketCountOrderByAggregateInput
@@ -3396,6 +3552,10 @@ export namespace Prisma {
     detail?: StringNullableWithAggregatesFilter<"Ticket"> | string | null
     status?: EnumTicketStatusWithAggregatesFilter<"Ticket"> | $Enums.TicketStatus
     source?: EnumTicketSourceWithAggregatesFilter<"Ticket"> | $Enums.TicketSource
+    category?: EnumTicketCategoryNullableWithAggregatesFilter<"Ticket"> | $Enums.TicketCategory | null
+    priority?: EnumTicketPriorityNullableWithAggregatesFilter<"Ticket"> | $Enums.TicketPriority | null
+    summary?: StringNullableWithAggregatesFilter<"Ticket"> | string | null
+    triageStatus?: EnumTriageStatusWithAggregatesFilter<"Ticket"> | $Enums.TriageStatus
     createdAt?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Ticket"> | Date | string
   }
@@ -3456,6 +3616,10 @@ export namespace Prisma {
     detail?: string | null
     status?: $Enums.TicketStatus
     source?: $Enums.TicketSource
+    category?: $Enums.TicketCategory | null
+    priority?: $Enums.TicketPriority | null
+    summary?: string | null
+    triageStatus?: $Enums.TriageStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     notes?: NoteCreateNestedManyWithoutTicketInput
@@ -3467,6 +3631,10 @@ export namespace Prisma {
     detail?: string | null
     status?: $Enums.TicketStatus
     source?: $Enums.TicketSource
+    category?: $Enums.TicketCategory | null
+    priority?: $Enums.TicketPriority | null
+    summary?: string | null
+    triageStatus?: $Enums.TriageStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     notes?: NoteUncheckedCreateNestedManyWithoutTicketInput
@@ -3478,6 +3646,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NoteUpdateManyWithoutTicketNestedInput
@@ -3489,6 +3661,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NoteUncheckedUpdateManyWithoutTicketNestedInput
@@ -3500,6 +3676,10 @@ export namespace Prisma {
     detail?: string | null
     status?: $Enums.TicketStatus
     source?: $Enums.TicketSource
+    category?: $Enums.TicketCategory | null
+    priority?: $Enums.TicketPriority | null
+    summary?: string | null
+    triageStatus?: $Enums.TriageStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3510,6 +3690,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3520,6 +3704,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3616,6 +3804,27 @@ export namespace Prisma {
     not?: NestedEnumTicketSourceFilter<$PrismaModel> | $Enums.TicketSource
   }
 
+  export type EnumTicketCategoryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketCategory | EnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketCategoryNullableFilter<$PrismaModel> | $Enums.TicketCategory | null
+  }
+
+  export type EnumTicketPriorityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketPriorityNullableFilter<$PrismaModel> | $Enums.TicketPriority | null
+  }
+
+  export type EnumTriageStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TriageStatus | EnumTriageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTriageStatusFilter<$PrismaModel> | $Enums.TriageStatus
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3648,6 +3857,10 @@ export namespace Prisma {
     detail?: SortOrder
     status?: SortOrder
     source?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    summary?: SortOrder
+    triageStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3658,6 +3871,10 @@ export namespace Prisma {
     detail?: SortOrder
     status?: SortOrder
     source?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    summary?: SortOrder
+    triageStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3668,6 +3885,10 @@ export namespace Prisma {
     detail?: SortOrder
     status?: SortOrder
     source?: SortOrder
+    category?: SortOrder
+    priority?: SortOrder
+    summary?: SortOrder
+    triageStatus?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3726,6 +3947,36 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumTicketSourceFilter<$PrismaModel>
     _max?: NestedEnumTicketSourceFilter<$PrismaModel>
+  }
+
+  export type EnumTicketCategoryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketCategory | EnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketCategoryNullableWithAggregatesFilter<$PrismaModel> | $Enums.TicketCategory | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTicketCategoryNullableFilter<$PrismaModel>
+    _max?: NestedEnumTicketCategoryNullableFilter<$PrismaModel>
+  }
+
+  export type EnumTicketPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketPriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.TicketPriority | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTicketPriorityNullableFilter<$PrismaModel>
+    _max?: NestedEnumTicketPriorityNullableFilter<$PrismaModel>
+  }
+
+  export type EnumTriageStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TriageStatus | EnumTriageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTriageStatusWithAggregatesFilter<$PrismaModel> | $Enums.TriageStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTriageStatusFilter<$PrismaModel>
+    _max?: NestedEnumTriageStatusFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -3796,6 +4047,18 @@ export namespace Prisma {
 
   export type EnumTicketSourceFieldUpdateOperationsInput = {
     set?: $Enums.TicketSource
+  }
+
+  export type NullableEnumTicketCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.TicketCategory | null
+  }
+
+  export type NullableEnumTicketPriorityFieldUpdateOperationsInput = {
+    set?: $Enums.TicketPriority | null
+  }
+
+  export type EnumTriageStatusFieldUpdateOperationsInput = {
+    set?: $Enums.TriageStatus
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -3886,6 +4149,27 @@ export namespace Prisma {
     not?: NestedEnumTicketSourceFilter<$PrismaModel> | $Enums.TicketSource
   }
 
+  export type NestedEnumTicketCategoryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketCategory | EnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketCategoryNullableFilter<$PrismaModel> | $Enums.TicketCategory | null
+  }
+
+  export type NestedEnumTicketPriorityNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketPriorityNullableFilter<$PrismaModel> | $Enums.TicketPriority | null
+  }
+
+  export type NestedEnumTriageStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.TriageStatus | EnumTriageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTriageStatusFilter<$PrismaModel> | $Enums.TriageStatus
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -3973,6 +4257,36 @@ export namespace Prisma {
     _max?: NestedEnumTicketSourceFilter<$PrismaModel>
   }
 
+  export type NestedEnumTicketCategoryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketCategory | EnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketCategory[] | ListEnumTicketCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketCategoryNullableWithAggregatesFilter<$PrismaModel> | $Enums.TicketCategory | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTicketCategoryNullableFilter<$PrismaModel>
+    _max?: NestedEnumTicketCategoryNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTicketPriorityNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TicketPriority | EnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    in?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.TicketPriority[] | ListEnumTicketPriorityFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumTicketPriorityNullableWithAggregatesFilter<$PrismaModel> | $Enums.TicketPriority | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumTicketPriorityNullableFilter<$PrismaModel>
+    _max?: NestedEnumTicketPriorityNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTriageStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TriageStatus | EnumTriageStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TriageStatus[] | ListEnumTriageStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumTriageStatusWithAggregatesFilter<$PrismaModel> | $Enums.TriageStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTriageStatusFilter<$PrismaModel>
+    _max?: NestedEnumTriageStatusFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -4041,6 +4355,10 @@ export namespace Prisma {
     detail?: string | null
     status?: $Enums.TicketStatus
     source?: $Enums.TicketSource
+    category?: $Enums.TicketCategory | null
+    priority?: $Enums.TicketPriority | null
+    summary?: string | null
+    triageStatus?: $Enums.TriageStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4051,6 +4369,10 @@ export namespace Prisma {
     detail?: string | null
     status?: $Enums.TicketStatus
     source?: $Enums.TicketSource
+    category?: $Enums.TicketCategory | null
+    priority?: $Enums.TicketPriority | null
+    summary?: string | null
+    triageStatus?: $Enums.TriageStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4077,6 +4399,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4087,6 +4413,10 @@ export namespace Prisma {
     detail?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumTicketStatusFieldUpdateOperationsInput | $Enums.TicketStatus
     source?: EnumTicketSourceFieldUpdateOperationsInput | $Enums.TicketSource
+    category?: NullableEnumTicketCategoryFieldUpdateOperationsInput | $Enums.TicketCategory | null
+    priority?: NullableEnumTicketPriorityFieldUpdateOperationsInput | $Enums.TicketPriority | null
+    summary?: NullableStringFieldUpdateOperationsInput | string | null
+    triageStatus?: EnumTriageStatusFieldUpdateOperationsInput | $Enums.TriageStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

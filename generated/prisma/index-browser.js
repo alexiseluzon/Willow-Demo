@@ -126,6 +126,10 @@ exports.Prisma.TicketScalarFieldEnum = {
   detail: 'detail',
   status: 'status',
   source: 'source',
+  category: 'category',
+  priority: 'priority',
+  summary: 'summary',
+  triageStatus: 'triageStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -160,6 +164,27 @@ exports.TicketStatus = exports.$Enums.TicketStatus = {
 exports.TicketSource = exports.$Enums.TicketSource = {
   MANUAL: 'MANUAL',
   N8N: 'N8N'
+};
+
+exports.TicketCategory = exports.$Enums.TicketCategory = {
+  BUG: 'BUG',
+  BILLING: 'BILLING',
+  FEATURE_REQUEST: 'FEATURE_REQUEST',
+  ACCOUNT: 'ACCOUNT',
+  OTHER: 'OTHER'
+};
+
+exports.TicketPriority = exports.$Enums.TicketPriority = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  URGENT: 'URGENT'
+};
+
+exports.TriageStatus = exports.$Enums.TriageStatus = {
+  PENDING: 'PENDING',
+  DONE: 'DONE',
+  FAILED: 'FAILED'
 };
 
 exports.Prisma.ModelName = {
