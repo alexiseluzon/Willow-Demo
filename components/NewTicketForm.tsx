@@ -41,6 +41,7 @@ export function NewTicketForm() {
           placeholder="e.g. Follow up with missed appointment"
           className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           required
+          maxLength={200}
         />
       </div>
 
@@ -54,6 +55,7 @@ export function NewTicketForm() {
           onChange={(e) => setDetail(e.target.value)}
           rows={2}
           className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          maxLength={5000}
         />
       </div>
 

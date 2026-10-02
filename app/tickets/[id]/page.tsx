@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { findSimilar } from "@/lib/ai/similar";
 import { AgentPanel } from "@/components/AgentPanel";
+import { retryTriage } from "@/app/tickets/actions";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
 
 const PRIORITY_STYLES: Record<string, string> = {
   LOW: "bg-gray-100 text-gray-700",
@@ -52,9 +54,20 @@ export default async function TicketPage({
             </span>
           )}
           {ticket.triageStatus === "FAILED" && (
-            <span className="rounded-full bg-amber-100 px-2 py-1 text-amber-800">
-              Needs manual triage
-            </span>
+            <>
+              <span className="rounded-full bg-amber-100 px-2 py-1 text-amber-800">
+                Needs manual triage
+              </span>
+              <form action={retryTriage.bind(null, ticket.id)}>
+                <button
+                  type="submit"
+                  title="Run AI triage again"
+                  className="rounded-full border border-gray-300 px-2 py-1 text-gray-700 hover:bg-gray-50"
+                >
+                  Retry AI triage
+                </button>
+              </form>
+            </>
           )}
         </div>
         {ticket.summary && (

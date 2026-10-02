@@ -1,4 +1,6 @@
 export const VALID_STATUSES = ["OPEN", "IN_PROGRESS", "RESOLVED"] as const;
+export const MAX_TITLE = 200;
+export const MAX_DETAIL = 5000;
 export type TicketStatus = (typeof VALID_STATUSES)[number];
 
 export function isValidStatus(value: unknown): value is TicketStatus {
@@ -20,6 +22,12 @@ export function parseCreateTicketBody(body: unknown): CreateTicketInput | { erro
 
   if (typeof title !== "string" || title.trim().length === 0) {
     return { error: "A non-empty 'title' field is required." };
+  }
+  if (title.trim().length > MAX_TITLE) {
+    return { error: `'title' must be at most ${MAX_TITLE} characters.` };
+  }
+  if (typeof detail === "string" && detail.trim().length > MAX_DETAIL) {
+    return { error: `'detail' must be at most ${MAX_DETAIL} characters.` };
   }
 
   return {

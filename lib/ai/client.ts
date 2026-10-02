@@ -10,7 +10,7 @@ export function getAI(): OpenAI {
   return (client ??= new OpenAI({
     apiKey,
     baseURL: process.env.LLM_BASE_URL ?? "https://api.groq.com/openai/v1",
-    timeout: 15_000,
-    maxRetries: 1,
+    timeout: 10_000,
+    maxRetries: 0,
   }));
 }
